@@ -1,0 +1,112 @@
+<%- include('includes/head.ejs') %>
+<%- include('includes/bg.ejs') %>
+
+<script type="text/javascript" src="/javascripts/addNameSpace.js"></script>
+<script type="text/javascript" src="/javascripts/locationsNamespace.js"></script>
+<script type="text/javascript" src="/javascripts/classes.js"></script>
+<script src="/javascripts/functions.js"></script>
+
+<script>
+        document.addEventListener('DOMContentLoaded', function()
+        {
+            document.getElementById("add").addEventListener("click", addLoc);
+            document.getElementById("weather").addEventListener("click", weather);
+            document.getElementById("close-modal").addEventListener("click", closeMdl);
+            document.getElementById("delete").addEventListener("click", removeAllLoc);
+        }, false);
+
+        window.addEventListener("load", userLocations);
+
+        function openDialog() {
+            // exceptionally we are using jQuery....
+            $('#errAlert').modal('show');
+        }
+        function closeDialog() {
+            // exceptionally we are using jQuery....
+            $('#errAlert').modal('hide');
+        }
+    </script>
+
+</head>
+<body>
+<div class="modal fade" id="errAlert" tabindex="-1" aria-labelledby="errAlertLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errAlertLabel">Modal title</h5>
+            </div>
+            <div class="modal-body" id="errors-modal">
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="close-modal" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="jumbotron bg-transparent" >
+    <h1 style="color: black; text-align: center">My weather site</h1>
+    <hr class="my-4">
+    <h3 style="color: black; text-align: center">This site will show weather data for selected locations on the list</h3>
+</div>
+<div class="jumbotron bg-transparent" >
+    <h3 style="color: black; text-align: center">Welcome <%= userName%></h3>
+    <div class="container">
+        <div class="row justify-content-around">
+            <div class="col-md-5 alert-dark rounded auto">
+                <br>
+                <h4>Add location:
+                    <button type="button" class="btn btn-outline-secondary float-right" id="add">Add</button>
+                </h4>
+                <br>
+                <form>
+                    <div class="form-group">
+                        <label for="locName">Location name</label>
+                        <input type="text" class="form-control" id="locName" name="name">
+                    </div>
+                    <div class="form-group">
+                        <label for="long">Longitude</label>
+                        <input type="number" step="0.0000001" class="form-control" id="long" name="longitude">
+                    </div>
+                    <div class="form-group">
+                        <label for="lat">Latitude</label>
+                        <input type="number" step="0.0000001" class="form-control" id="lat" name="latitude">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row justify-content-around">
+            <div class="col-md-6 alert-dark rounded overflow-auto" style="max-height: 400px">
+                <br>
+                <h4>Location list:
+                    <div class="btn-group float-right">
+                        <button type="button" class="btn btn-outline-secondary " id="weather">Show selected</button>
+                        <button type="button" class="btn btn-outline-secondary" id="delete">Remove all</button>
+                    </div>
+                </h4>
+                <br>
+                <form class="form-check" style="padding-left: 0">
+                    <ul class="list-group" id="locList">
+                    </ul>
+                </form>
+                <br>
+            </div>
+            <div class="col-md-5 alert-dark rounded overflow-auto" style="max-height: 400px">
+                <br>
+                <h4>Selected Forecast:</h4>
+                <img src="images/loading1.gif" alt="loading gif" id="load" hidden="true">
+                <ul class="list-group" id="forecast-list">
+
+                </ul>
+                <br>
+            </div>
+        </div>
+    </div>
+    <a href="/logout" class="btn btn-info" role="button">Logout</a>
+</div>
+<%- include('includes/end.ejs') %>
+

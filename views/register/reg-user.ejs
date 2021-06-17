@@ -1,0 +1,46 @@
+<%- include('../includes/head.ejs') %>
+<%- include('../includes/bg.ejs') %>
+
+
+</head>
+<br>
+<div class="container">
+
+  <div class="container bg-transparent rounded" id="pageHead">
+    <h1>Internet programming - EX4</h1>
+    <h3>Please complete the form to register</h3>
+    <br>
+  </div>
+  <br>
+  <br>
+  <div class="container bg-transparent rounded auto">
+    <form action="/reg-usr" method="post">
+      <h3>Personal information</h3>
+      <div class="form-group">
+        <label for="firstName">First name</label>
+        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter first name" required pattern="[a-zA-Z]+" title="Use only letters">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last name</label>
+        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter last name" required pattern="[a-zA-Z]+" title="Use only letters">
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="Enter Email" required="true">
+      </div>
+      <input type="submit" class="btn btn-primary" value="Submit">
+      <a href="/login" class="btn btn-info" role="button">Back to login</a>
+    </form>
+    <br>
+
+    <% if (errMessage.trim() !== "") { %>
+      <h1><%= errMessage %></h1>
+      <a href="/reg-usr" class="btn btn-info" role="button">Try again</a>
+    <br>
+    <% } %>
+  </div>
+
+
+</div>
+
+<%- include('../includes/end.ejs') %>

@@ -1,0 +1,25 @@
+<%- include('includes/head.ejs') %>
+
+<br>
+<div class="container">
+    <a href="/logout" class="btn btn-info" role="button">Logout</a>
+    <table class="container alert-dark rounded" id="table">
+        <tr>
+            <th>name</th>
+            <th>last name</th>
+            <th>email</th>
+        </tr>
+        <% for (var i = 0; i < info.length; i++) { %>
+            <tr>
+                <td><%= info[i].firstName %></td>
+                <td><%= info[i].lastName %></td>
+                <td><%= info[i].email %></td>
+            </tr>
+        <% } %>
+        <br>
+    </table>
+
+
+</div>
+
+<%- include('includes/end.ejs') %>
